@@ -10,10 +10,11 @@ export class RecipeService {
   constructor(private http:HttpClient) { }
 
   
-  getRecipieAll(){
+  getRecipeAll(){
     const apiKey = environment.apiKey;
     const url = environment.apiUrl;
     return this.http.get(url+apiKey);
 }
+  
 }
 

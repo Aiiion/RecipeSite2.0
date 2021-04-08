@@ -7,9 +7,17 @@ import {RecipeService} from './recipe.service';
 })
 export class AppComponent {
   title = 'u07';
+  recipes: any = [];
+  savedRecipes: any = []
   constructor(private recipe:RecipeService){
-    this.recipe.getRecipieAll().subscribe(recipes=>{
-      console.log(recipes);
+    this.recipe.getRecipeAll().subscribe(recipes=>{
+      console.log(recipes)
+      this.recipes=recipes
     })
+  }
+  saveRecipe(recipe){
+    this.savedRecipes.push(recipe);
+    console.log(this.savedRecipes);
+    return this.savedRecipes;
   }
 }
