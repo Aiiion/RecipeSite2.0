@@ -9,24 +9,58 @@ export class AppComponent {
   title = 'u07';
   recipes: any = [];
   savedRecipes: any = [];
-  displayedRecipes: any = [];
-  onlyGlutenFree: boolean = false
+  gluten: boolean = false;
+  soy: boolean = false;
+  peanut: boolean = false;
+  mealType: string = "all";
+  filterRecipes: boolean = false;
 
   constructor(private recipe:RecipeService){
-    this.recipe.getRecipeAll().subscribe(recipes=>{
-      console.log(recipes)
-      this.recipes=recipes
-      this.displayedRecipes=recipes
-      console.log(this.displayedRecipes)
+    if(this.soy || this.peanut || this.gluten || this.mealType !== "all"){
+      this.recipe.getRecipesFiltered(this.gluten, this.soy, this.peanut, this.mealType).subscribe(recipes=>{
+        this.recipes = recipes
     })
+  }
+  else{
+    this.recipe.getRecipeAll().subscribe(recipes=>{
+      this.recipes=recipes
+    })}
+  }
+  getFilteredRecipes(){
+    
+    this.recipe.getRecipesFiltered(this.gluten, this.soy, this.peanut, this.mealType).subscribe(recipes=>{
+      this.recipes = recipes
+      console.log(this.recipes)
+  })
+  }
+  toggleGlutenFree(){
+    if(this.gluten){
+      this.gluten = false
+    }else{
+      this.gluten = true
+    }
+    this.getFilteredRecipes()
+  }
+  toggleMealType(type){
+    this.mealType = type
+    this.getFilteredRecipes()
   }
   saveRecipe(recipe){
     this.savedRecipes.push(recipe);
     console.log(this.savedRecipes);
     return this.savedRecipes;
   }
-  glutenFree(){
-  // if(!this.onlyGlutenFree){
+
+  unSaveRecipe(savedRecipe){//not working
+    console.log(this.savedRecipes);
+    this.savedRecipes.forEach(recipe =>
+      {if(savedRecipe == recipe){
+        console.log(savedRecipe)
+        savedRecipe.splice(index, 1);
+      }})
+  }
+}
+// if(!this.onlyGlutenFree){
   // this.displayedRecipes.recipes = this.displayedRecipes.recipes.filter(
   //   recipe => recipe.glutenFree, false)
   //   console.log("removed gluten");
@@ -38,13 +72,3 @@ export class AppComponent {
   //   this.onlyGlutenFree =false;
   // }
   //   return this.displayedRecipes;
-  }
-
-  unSaveRecipe(savedRecipe){
-    console.log(this.savedRecipes);
-    this.savedRecipes.forEach(recipe =>
-      {if(savedRecipe == recipe){
-        savedRecipe.remove();
-      }})
-  }
-}

@@ -28,8 +28,9 @@ export class RecipeService {
       query+= environment.noPeanuts;
     }
     if(mealType !== "all"){
-      query += "&mealType=" + mealType + "&";
+      query += "type=" + mealType + "&";
     }
+    console.log(query+apiKey)
     return this.http.get(query+apiKey);
   }
   
