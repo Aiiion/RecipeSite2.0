@@ -1,16 +1,20 @@
 <h1>u07</h1>
 <tbody>
-  <!-- <input type='checkbox' ng-init='checkStatus=false' ng-model='checkStatus' ng-click='doIfChecked(checkStatus)'> -->
+  <!-- <input type='checkbox' ng-init='glutenFree=false' ng-model='glutenFree' ng-click='glutenFree()'> -->
+  <button (click)="glutenFree()">Remove gluten</button>
   <tr>
     <td>test</td>
     <td>test2</td>
     <td>test</td>
     <td>test2</td>
   </tr>
-  <tr *ngFor="let recipe of recipes.recipes">
+  <tr *ngFor="let recipe of displayedRecipes.recipes">
     <td>{{ recipe.title }} <button (click)="saveRecipe(recipe)">Save</button></td>
     <td>test2</td>
     <td>test</td>
     <td>test2</td>
+  </tr>
+  <tr *ngFor="let savedRecipe of savedRecipes" style="border: 1px solid black">
+    <td>{{savedRecipe.title}} <button (click)="unSaveRecipe(savedRecipe)">remove</button></td>
   </tr>
 </tbody>

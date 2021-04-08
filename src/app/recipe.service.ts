@@ -12,9 +12,26 @@ export class RecipeService {
   
   getRecipeAll(){
     const apiKey = environment.apiKey;
-    const url = environment.apiUrl;
-    return this.http.get(url+apiKey);
+    const randomiseUrl = environment.apiUrlRandom;
+    return this.http.get(randomiseUrl+apiKey);
 }
+  getRecipesFiltered(glutenFree, soyFree, peanutFree, mealType){
+    let query: string = environment.filteredUrl;
+    const apiKey = environment.apiKey;
+    if(glutenFree){
+      query += environment.noGluten;
+    }
+    if(soyFree){
+      query += environment.noSoy;
+    }
+    if(peanutFree){
+      query+= environment.noPeanuts;
+    }
+    if(mealType !== "all"){
+      query += "&mealType=" + mealType + "&";
+    }
+    return this.http.get(query+apiKey);
+  }
   
 }
 
