@@ -30,8 +30,8 @@ export class RecipeService {
     if(mealType !== "all"){
       query += "type=" + mealType + "&";
     }
-    console.log(query+apiKey)
-    return this.http.get(query+apiKey);
+    console.log(query+"number=10&"+apiKey)
+    return this.http.get(query+"number=10&"+apiKey);
   }
   
 }

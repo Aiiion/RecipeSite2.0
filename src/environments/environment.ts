@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   apiKey: "apiKey=1e629303c29149f9bac668ad7415aeb3",
-  apiUrlRandom: "https://api.spoonacular.com/recipes/random?number=10&",
-  filteredUrl: "https://api.spoonacular.com/recipes/complexSearch?query=",
+  apiUrlRandom: "https://api.spoonacular.com/recipes/complexSearch?query=vegetarian&number=10&",
+  filteredUrl: "https://api.spoonacular.com/recipes/complexSearch?",
   noGluten: "intolerances=Gluten&",
   noSoy: "intolerances=Soy&",
   noPeanuts: "intolerances=Peanuts&"

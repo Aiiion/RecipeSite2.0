@@ -24,6 +24,7 @@ export class AppComponent {
   else{
     this.recipe.getRecipeAll().subscribe(recipes=>{
       this.recipes=recipes
+      console.log(this.recipes)
     })}
   }
   getFilteredRecipes(){
@@ -41,6 +42,22 @@ export class AppComponent {
     }
     this.getFilteredRecipes()
   }
+  toggleSoyFree(){
+    if(this.soy){
+      this.soy = false
+    }else{
+      this.soy = true
+    }
+    this.getFilteredRecipes()
+  }
+  togglePeanutFree(){
+    if(this.peanut){
+      this.peanut = false
+    }else{
+      this.peanut = true
+    }
+    this.getFilteredRecipes()
+  }
   toggleMealType(type){
     this.mealType = type
     this.getFilteredRecipes()
@@ -51,13 +68,10 @@ export class AppComponent {
     return this.savedRecipes;
   }
 
-  unSaveRecipe(savedRecipe){//not working
+  unSaveRecipe(savedRecipe){
+    
+    this.savedRecipes = this.savedRecipes.filter(recipe => recipe !== savedRecipe)
     console.log(this.savedRecipes);
-    this.savedRecipes.forEach(recipe =>
-      {if(savedRecipe == recipe){
-        console.log(savedRecipe)
-        savedRecipe.splice(index, 1);
-      }})
   }
 }
 // if(!this.onlyGlutenFree){
