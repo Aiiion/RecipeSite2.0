@@ -21,14 +21,11 @@
       
     </tr>
     <tr *ngFor="let recipe of recipes.results">
-      <td>{{ recipe.title }} <button (click)="saveRecipe(recipe)">Save</button></td>
-      <!-- <td><button (click)="showRecipeDetails()">Details</button></td> -->
+      <td>{{ recipe.title }} <button (click)="this.data.addSavedRecipe(recipe)">Save</button></td>
       <td>
-          <a routerLink="/recipe-details" routerLinkActive="active" (click)="setChoosenRecipe(recipe.id)">View Details</a>
+          <a routerLink="/recipe-details" routerLinkActive="active" (click)="this.data.setChoosenRecipeId(recipe.id)">View Details</a>
         </td>
       
     </tr>
-    <tr *ngFor="let savedRecipe of savedRecipes" style="border: 1px solid black">
-      <td>{{savedRecipe.title}} <button (click)="unSaveRecipe(savedRecipe)">remove</button></td>
-    </tr>
+    
   </tbody>

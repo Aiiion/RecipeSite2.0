@@ -1,0 +1,4 @@
+<p>saved-recipes works!</p>
+<tr *ngFor="let savedRecipe of savedRecipes" style="border: 1px solid black">
+    <td>{{savedRecipe.title}} <button (click)="this.data.removeSavedRecipe(savedRecipe)">remove</button></td>
+  </tr>

@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { RecipeFinderComponent } from './recipe-finder/recipe-finder.component';
+import { SavedRecipesComponent } from './saved-recipes/saved-recipes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeDetailsComponent,
-    RecipeFinderComponent
+    RecipeFinderComponent,
+    SavedRecipesComponent
   ],
   imports: [
     BrowserModule,
