@@ -33,6 +33,10 @@ export class RecipeService {
     console.log(query+"number=10&"+apiKey)
     return this.http.get(query+"number=10&"+apiKey);
   }
+  getRecipeById(id){
+    const apiKey = environment.apiKey;
+    return this.http.get("https://api.spoonacular.com/recipes/{" + id + "}/ingredientWidget.json" + apiKey)
+  }
   
 }
 

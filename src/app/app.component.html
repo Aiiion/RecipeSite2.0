@@ -1,31 +1,7 @@
 <h1>u07</h1>
-<header>
-  <ul>
-    <li><button (click)="toggleGlutenFree()">Gluten</button></li>
-    <li><button (click)="toggleSoyFree()">Soy</button></li>
-    <li><button (click)="togglePeanutFree()">Peanuts</button></li>
-  </ul>
-  <ul class="row">
-    <li class=""><button (click)="toggleMealType('breakfast')">Breakfast</button></li>
-    <li><button (click)="toggleMealType('main+course')">Main course</button></li>
-    <li><button (click)="toggleMealType('dessert')">Dessert</button></li>
-    <li><button (click)="toggleMealType('all')">All meals</button></li>
-  </ul>
-</header>
-<tbody>
-  <!-- <input type='checkbox' ng-init='glutenFree=false' ng-model='glutenFree' ng-click='glutenFree()'> -->
-  
-  <tr>
-    <td>test</td>
-    <td>test2</td>
-    
-  </tr>
-  <tr *ngFor="let recipe of recipes.results">
-    <td>{{ recipe.title }} <button (click)="saveRecipe(recipe)">Save</button></td>
-    <td><button (click)="showRecipeDetails()">Details</button></td>
-    
-  </tr>
-  <tr *ngFor="let savedRecipe of savedRecipes" style="border: 1px solid black">
-    <td>{{savedRecipe.title}} <button (click)="unSaveRecipe(savedRecipe)">remove</button></td>
-  </tr>
-</tbody>
+<nav>
+  <a routerLink="/recipe-finder" routerLinkActive="active">Recipe Finder</a>
+  <br>
+  <!-- <a routerLink="/heroes" routerLinkActive="active">Heroes</a> -->
+</nav>
+<router-outlet></router-outlet>
