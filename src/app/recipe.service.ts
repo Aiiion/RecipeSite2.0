@@ -35,7 +35,8 @@ export class RecipeService {
   }
   getRecipeById(id){
     const apiKey = environment.apiKey;
-    return this.http.get("https://api.spoonacular.com/recipes/{" + id + "}/ingredientWidget.json" + apiKey)
+    console.log("https://api.spoonacular.com/recipes/" + id + "/ingredientWidget.json?" + apiKey)
+    return this.http.get("https://api.spoonacular.com/recipes/" + id + "/ingredientWidget.json?" + apiKey)
   }
   
 }

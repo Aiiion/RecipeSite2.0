@@ -11,15 +11,3 @@ export class AppComponent {
   ngOnInit(): void {
   }
 }
-// if(!this.onlyGlutenFree){
-  // this.displayedRecipes.recipes = this.displayedRecipes.recipes.filter(
-  //   recipe => recipe.glutenFree, false)
-  //   console.log("removed gluten");
-  //   this.onlyGlutenFree = true;
-  // }else{
-  //   this.displayedRecipes.recipes.push(this.recipes.recipes.filter(
-  //     recipe => recipe.glutenfree, false
-  //   ))
-  //   this.onlyGlutenFree =false;
-  // }
-  //   return this.displayedRecipes;

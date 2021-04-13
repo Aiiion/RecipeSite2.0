@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RecipeService} from '../recipe.service';
+import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-recipe-details',
@@ -7,16 +8,21 @@ import {RecipeService} from '../recipe.service';
   styleUrls: ['./recipe-details.component.css']
 })
 export class RecipeDetailsComponent implements OnInit{
-  choosenRecipeId: any = 0;
-  constructor(private recipe:RecipeService) {
-    // this.recipe.getRecipeById(this.choosenRecipeId).subscribe(recipes=>{
-    //   this.recipes=recipes
-   }
+  choosenRecipe: any = [];
+
+  constructor(private recipe:RecipeService, private data:DataService) {}
    ngOnInit() {
-    // this.getHeroes();
+    
+    this.recipe.getRecipeById(this.data.getChoosenRecipeId()).subscribe(choosenRecipe =>{
+      this.choosenRecipe = choosenRecipe
+        console.log(this.choosenRecipe)
+      })
+    
+    
   }
-  //  setChoosenRecipe(id){
-  //   this.choosenRecipeId = id;
-  // }
   
-}
+    
+  }
+//   this.recipe.getRecipesFiltered(this.gluten, this.soy, this.peanut, this.mealType).subscribe(recipes=>{
+//     this.recipes = recipes
+// })

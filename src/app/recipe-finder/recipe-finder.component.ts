@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RecipeService} from '../recipe.service';
-
+import {DataService} from '../data.service';
 @Component({
   selector: 'app-recipe-finder',
   templateUrl: './recipe-finder.component.html',
@@ -16,19 +16,14 @@ export class RecipeFinderComponent {
   peanut: boolean = false;
   mealType: string = "all";
   filterRecipes: boolean = false;
-  choosenRecipeId: any = 0;
+  
 
-  constructor(private recipe:RecipeService){
-    if(this.soy || this.peanut || this.gluten || this.mealType !== "all"){
-      this.recipe.getRecipesFiltered(this.gluten, this.soy, this.peanut, this.mealType).subscribe(recipes=>{
-        this.recipes = recipes
-    })
-  }
-  else{
+  constructor(private recipe:RecipeService, private data:DataService){
+    
     this.recipe.getRecipeAll().subscribe(recipes=>{
       this.recipes=recipes
       console.log(this.recipes)
-    })}
+    })
   }
   getFilteredRecipes(){
     
@@ -71,8 +66,9 @@ export class RecipeFinderComponent {
     return this.savedRecipes;
   }
   setChoosenRecipe(id){
-    this.choosenRecipeId = id;
-  }
+    this.data.setChoosenRecipeId(id);
+    console.log(id + "finder")
+   }
   unSaveRecipe(savedRecipe){
     
     this.savedRecipes = this.savedRecipes.filter(recipe => recipe !== savedRecipe)
