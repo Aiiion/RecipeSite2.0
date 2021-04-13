@@ -1,4 +1,8 @@
 <p>saved-recipes works!</p>
 <tr *ngFor="let savedRecipe of savedRecipes" style="border: 1px solid black">
-    <td>{{savedRecipe.title}} <button (click)="this.data.removeSavedRecipe(savedRecipe)">remove</button></td>
+    <td>
+        {{savedRecipe.title}} 
+        <a routerLink="/recipe-details" routerLinkActive="active" (click)="this.data.setChoosenRecipeId(savedRecipe.id)">View Details</a>
+        <button (click)="unSaveRecipe(savedRecipe)">remove</button>
+    </td>
   </tr>

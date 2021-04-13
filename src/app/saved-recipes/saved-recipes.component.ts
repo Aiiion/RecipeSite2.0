@@ -15,5 +15,8 @@ export class SavedRecipesComponent implements OnInit {
   ngOnInit(): void {
     this.savedRecipes = this.data.getSavedRecipes();
   }
-
+  unSaveRecipe(recipe){
+    this.savedRecipes = this.savedRecipes.filter(savedRecipe => savedRecipe !== recipe)
+    this.data.removeSavedRecipe(recipe)
+  }
 }
