@@ -1,17 +1,33 @@
 <p>recipe-finder works!</p>
-<header>
+<div class="jumbotron align-items-center">
     <ul>
-      <li><button (click)="toggleGlutenFree()">Gluten</button></li>
-      <li><button (click)="toggleSoyFree()">Soy</button></li>
-      <li><button (click)="togglePeanutFree()">Peanuts</button></li>
+      <button class="btn" [ngClass]="{'btn-danger' : gluten, 'btn-success' : !gluten}" (click)="toggleGlutenFree()">Gluten</button>
+      <button class="btn" [ngClass]="{'btn-danger' : soy, 'btn-success' : !soy}" (click)="toggleSoyFree()">Soy</button>
+      <button class="btn" [ngClass]="{'btn-danger' : peanut, 'btn-success' : !peanut}" (click)="togglePeanutFree()">Peanuts</button>
     </ul>
     <ul class="row">
-      <li class=""><button (click)="toggleMealType('breakfast')">Breakfast</button></li>
-      <li><button (click)="toggleMealType('main+course')">Main course</button></li>
-      <li><button (click)="toggleMealType('dessert')">Dessert</button></li>
-      <li><button (click)="toggleMealType('all')">All meals</button></li>
+      <button class="btn"
+        [ngClass]="{'btn-primary' : mealType !== 'breakfast', 'btn-dark' : mealType == 'breakfast'}" 
+        (click)="toggleMealType('breakfast')"
+        >Breakfast
+      </button>
+      <button class="btn"
+        [ngClass]="{'btn-primary' : mealType !== 'main+course', 'btn-dark' : mealType == 'main+course'}" 
+        (click)="toggleMealType('main+course')"
+        >Main course
+      </button>
+      <button class="btn"
+        [ngClass]="{'btn-primary' : mealType !== 'dessert', 'btn-dark' : mealType == 'dessert'}" 
+        (click)="toggleMealType('dessert')"
+        >Dessert
+      </button>
+      <button class="btn"
+        [ngClass]="{'btn-primary' : mealType !== 'all', 'btn-dark' : mealType == 'all'}" 
+        (click)="toggleMealType('all')"
+        >All meals
+      </button>
     </ul>
-  </header>
+  </div>
   <tbody>
     <!-- <input type='checkbox' ng-init='glutenFree=false' ng-model='glutenFree' ng-click='glutenFree()'> -->
     
