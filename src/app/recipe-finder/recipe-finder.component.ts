@@ -16,7 +16,6 @@ export class RecipeFinderComponent {
   peanut: boolean = false;
   mealType: string = "all";
   filterRecipes: boolean = false;
-  
 
   constructor(private recipe:RecipeService, private data:DataService){
     

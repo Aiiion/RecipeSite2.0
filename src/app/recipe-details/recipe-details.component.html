@@ -1,4 +1,5 @@
 <p>recipe-details works!</p>
-<!-- <ul *ngFor="let ingredient of choosenRecipe.results"> -->
+<ul *ngFor="let ingredient of choosenRecipe.ingredients">
+    <li>{{ingredient.amount.metric.value}} {{ingredient.amount.metric.unit}} of {{ingredient.name}}</li>
 
-<!-- </ul> -->
+</ul>

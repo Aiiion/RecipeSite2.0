@@ -19,10 +19,5 @@ export class RecipeDetailsComponent implements OnInit{
       })
     
     
+  } 
   }
-  
-    
-  }
-//   this.recipe.getRecipesFiltered(this.gluten, this.soy, this.peanut, this.mealType).subscribe(recipes=>{
-//     this.recipes = recipes
-// })
