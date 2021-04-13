@@ -22,7 +22,7 @@
   </tr>
   <tr *ngFor="let recipe of recipes.results">
     <td>{{ recipe.title }} <button (click)="saveRecipe(recipe)">Save</button></td>
-    <td>test2</td>
+    <td><button (click)="showRecipeDetails()">Details</button></td>
     
   </tr>
   <tr *ngFor="let savedRecipe of savedRecipes" style="border: 1px solid black">
