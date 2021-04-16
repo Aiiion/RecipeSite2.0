@@ -1,11 +1,18 @@
-<p>recipe-finder works!</p>
-<div class="jumbotron align-items-center">
-    <ul>
-      <button class="btn" [ngClass]="{'btn-danger' : gluten, 'btn-success' : !gluten}" (click)="toggleGlutenFree()">Gluten</button>
+<div class="jumbotron col-xl-12 d-flex">
+    
+    
+    <div class="col-xl-6 m-1">
+      <h2 >Filter alergens</h2>
+      <!-- <button class="btn" [ngClass]="{'btn-danger' : gluten, 'btn-success' : !gluten}" (click)="toggleGlutenFree()">Gluten</button>
       <button class="btn" [ngClass]="{'btn-danger' : soy, 'btn-success' : !soy}" (click)="toggleSoyFree()">Soy</button>
-      <button class="btn" [ngClass]="{'btn-danger' : peanut, 'btn-success' : !peanut}" (click)="togglePeanutFree()">Peanuts</button>
-    </ul>
-    <ul class="row">
+      <button class="btn" [ngClass]="{'btn-danger' : peanut, 'btn-success' : !peanut}" (click)="togglePeanutFree()">Peanuts</button> -->
+      <button class="btn" [ngClass]="{'btn-danger' : gluten, 'btn-success' : !gluten}" (click)="toggleAlergenFilter('gluten')">Gluten</button>
+      <button class="btn" [ngClass]="{'btn-danger' : soy, 'btn-success' : !soy}" (click)="toggleAlergenFilter('soy')">Soy</button>
+      <button class="btn" [ngClass]="{'btn-danger' : peanut, 'btn-success' : !peanut}" (click)="toggleAlergenFilter('peanut')">Peanuts</button>
+    </div>
+    
+    <div class="col-xl-6">
+      <h2>Filter mealtypes</h2>
       <button class="btn"
         [ngClass]="{'btn-primary' : mealType !== 'breakfast', 'btn-dark' : mealType == 'breakfast'}" 
         (click)="toggleMealType('breakfast')"
@@ -26,22 +33,23 @@
         (click)="toggleMealType('all')"
         >All meals
       </button>
-    </ul>
+    </div>
   </div>
-  <tbody>
-    <!-- <input type='checkbox' ng-init='glutenFree=false' ng-model='glutenFree' ng-click='glutenFree()'> -->
+  <table class="col-xl-12">
+    <thead>
+      <tr>
+        <th><b>Dish name</b></th>
+        <th><b>Learn more</b></th>
+        
+      </tr>
+    </thead>
+  <tbody class="">
     
-    <tr>
-      <td>test</td>
-      <td>test2</td>
-      
-    </tr>
     <tr *ngFor="let recipe of recipes.results">
-      <td>{{ recipe.title }} <button (click)="this.data.addSavedRecipe(recipe)">Save</button></td>
+      <td>{{ recipe.title }} <button class="float-right" (click)="this.data.addSavedRecipe(recipe)">Save</button></td>
       <td>
           <a routerLink="/recipe-details" routerLinkActive="active" (click)="this.data.setChoosenRecipeId(recipe.id)">View Details</a>
         </td>
-      
     </tr>
-    
   </tbody>
+</table>

@@ -1,5 +1,4 @@
-<p>recipe-details works!</p>
-<ul *ngFor="let ingredient of choosenRecipe.ingredients">
-    <li>{{ingredient.amount.metric.value}} {{ingredient.amount.metric.unit}} {{ingredient.name}}</li>
+<ul class="col-xl-6" *ngFor="let ingredient of choosenRecipe.ingredients">
+    <li class="card text-center">{{ingredient.amount.metric.value}} {{ingredient.amount.metric.unit}} {{ingredient.name}}</li>
 
 </ul>

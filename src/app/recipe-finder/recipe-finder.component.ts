@@ -26,28 +26,8 @@ export class RecipeFinderComponent {
       console.log(this.recipes)
   })
   }
-  toggleGlutenFree(){
-    if(this.gluten){
-      this.gluten = false
-    }else{
-      this.gluten = true
-    }
-    this.getFilteredRecipes()
-  }
-  toggleSoyFree(){
-    if(this.soy){
-      this.soy = false
-    }else{
-      this.soy = true
-    }
-    this.getFilteredRecipes()
-  }
-  togglePeanutFree(){
-    if(this.peanut){
-      this.peanut = false
-    }else{
-      this.peanut = true
-    }
+  toggleAlergenFilter(prop){
+    this[prop] = !this[prop];
     this.getFilteredRecipes()
   }
   toggleMealType(type){
