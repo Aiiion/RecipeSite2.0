@@ -1,3 +1,6 @@
 .centersetText{
     text-align:center;
 }
+body{
+    background-color: #343a40 !important;
+}
