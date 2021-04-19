@@ -36,19 +36,21 @@
     </div>
   </div>
   <table class="col-xl-12 bg-dark m0">
-    <thead>
-      <tr>
-        <th><b class="text-light">Dish name</b></th>
-        <th><b class="text-light">Learn more</b></th>
+    <thead class="m-3">
+      <tr class="m-3">
+        <th class="m-3"><b class="text-light ">Dish name</b></th>
+        <th></th>
+        <th class="m-3"><b class="text-light m-3">Learn more</b></th>
         
       </tr>
     </thead>
   <tbody >
     
     <tr *ngFor="let recipe of recipes.results" class="border-top">
-      <td class="text-light">{{ recipe.title }} <button class="float-right" (click)="this.data.addSavedRecipe(recipe)">Save</button></td>
+      <td class="text-light">{{ recipe.title }} </td>
+      <td><button class="float-right btn btn-light" (click)="this.data.addSavedRecipe(recipe)">Save</button></td>
       <td class="text-light">
-          <a routerLink="/recipe-details" routerLinkActive="active" (click)="this.data.setChoosenRecipeId(recipe.id)">View Details</a>
+          <a class="m-3" routerLink="/recipe-details" routerLinkActive="active" (click)="this.data.setChoosenRecipeId(recipe.id)">View Details</a>
         </td>
         <hr/>
     </tr>

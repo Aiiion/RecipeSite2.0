@@ -2,8 +2,8 @@
     <li class="card col-xl-12 centersetText">
         <p>{{savedRecipe.title}}</p> 
         <div class="col-xl-12">
-            <a routerLink="/recipe-details" routerLinkActive="active" (click)="this.data.setChoosenRecipeId(savedRecipe.id)">View Details</a>
-            <button (click)="unSaveRecipe(savedRecipe)">remove</button>
+            <a class="m-3" routerLink="/recipe-details" routerLinkActive="active" (click)="this.data.setChoosenRecipeId(savedRecipe.id)">View Details</a>
+            <button class="btn btn-danger" (click)="unSaveRecipe(savedRecipe)">remove</button>
         </div>
     </li>
 </ul>
