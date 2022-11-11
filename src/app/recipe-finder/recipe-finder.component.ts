@@ -15,14 +15,25 @@ export class RecipeFinderComponent {
   mealType: string = "all";
 
   constructor(private recipe:RecipeService, private data:DataService){
-    this.recipe.getRecipeAll().subscribe(recipes=>{
-      this.recipes=recipes
+    this.recipe.getRecipeAll().subscribe(response=>{
+      console.log(response.status, response.ok)
+      if(response.status == 403) {
+        alert('You have been logged out');
+        localStorage.setItem("token", response.authorisation.token);
+        window.location.href ="/login";
+      }
+      this.recipes=response
       console.log(this.recipes)
     })
   }
   getFilteredRecipes(){
-    this.recipe.getRecipesFiltered(this.gluten, this.soy, this.peanut, this.mealType).subscribe(recipes=>{
-      this.recipes = recipes
+    this.recipe.getRecipesFiltered(this.gluten, this.soy, this.peanut, this.mealType).subscribe(response=>{
+      if(response.status == 403) {
+        alert('You have been logged out');
+        localStorage.setItem("token", response.authorisation.token);
+        window.location.href ="/login";
+      }
+      this.recipes = response
       console.log(this.recipes)
   })
   }

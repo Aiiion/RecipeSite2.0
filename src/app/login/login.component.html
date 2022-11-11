@@ -1,0 +1,37 @@
+<form class="text-white" 
+[formGroup]="form" 
+(ngSubmit)="tryLogin()"
+name="form">
+    <p><b>LOGIN</b></p>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input type="email" formControlName="email" class="form-control" [(ngModel)]="form.email" />
+      <label class="form-label" for="email">Email address</label>
+    </div>
+  
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <input type="password" formControlName="password" class="form-control" [(ngModel)]="form.password" />
+      <label class="form-label" for="password">Password</label>
+    </div>
+  
+    <!-- 2 column grid layout for inline styling -->
+    <div class="row mb-4">
+      <div class="col d-flex justify-content-center">
+        <!-- Checkbox -->
+      </div>
+  
+      <div class="col">
+        <!-- Simple link -->
+        
+      </div>
+    </div>
+  
+    <!-- Submit button -->
+    <button (click)="tryLogin()" type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+  
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>Not a member? <a href="/register">Register</a></p>
+    </div>

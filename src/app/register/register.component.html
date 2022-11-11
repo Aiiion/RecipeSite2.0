@@ -1,0 +1,36 @@
+<form class="text-white" 
+[formGroup]="regForm" 
+(ngSubmit)="tryRegister()" 
+name="regForm">
+    <!-- Email input -->
+    <p><b>REGISTER</b></p>
+
+    <div class="form-outline mb-4">
+        <input type="name" formControlName="regName" class="form-control" [(ngModel)]="regForm.name"/>
+        <label class="form-label" for="regName">Username</label>
+      </div>
+
+    <div class="form-outline mb-4">
+      <input type="email" formControlName="regEmail" class="form-control" [(ngModel)]="regForm.email"/>
+      <label class="form-label" for="regEmail">Email address</label>
+    </div>
+  
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <input type="password" formControlName="regPassword" class="form-control" [(ngModel)]="regForm.password"/>
+      <label class="form-label" for="regPassword">Password</label>
+    </div>
+  
+    <!-- 2 column grid layout for inline styling -->
+    <div class="row mb-4">
+  
+      
+    </div>
+  
+    <!-- Submit button -->
+    <button type="button" (click)="tryRegister()" class="btn btn-primary btn-block mb-4">Register</button>
+  
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p>Already a member? <a href="/login">login</a></p>
+    </div>

@@ -13,8 +13,14 @@ export class RecipeDetailsComponent implements OnInit{
   constructor(private recipe:RecipeService, private data:DataService) {}
    ngOnInit() {
     
-    this.recipe.getRecipeById(this.data.getChoosenRecipeId()).subscribe(choosenRecipe =>{
-      this.choosenRecipe = choosenRecipe
+    this.recipe.getRecipeById(this.data.getChoosenRecipeId()).subscribe(response =>{
+      if(response.status == 403) {
+        console.log(response.status)
+        alert('You have been logged out');
+        localStorage.setItem("token", null);
+        window.location.href ="/login";
+      }
+      this.choosenRecipe = response
         console.log(this.choosenRecipe)
       })
     

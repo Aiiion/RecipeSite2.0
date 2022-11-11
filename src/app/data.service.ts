@@ -7,6 +7,7 @@ export class DataService {
   choosenRecipeId: any = 0;
   savedRecipes: any = [];
   amountSaved: number = 0;
+  user:any = null;
 
   constructor() { }
 
@@ -31,5 +32,11 @@ export class DataService {
   }
   getAmountSaved(){
     return this.amountSaved;
+  }
+  getUser() {
+    return this.user;
+  }
+  setUser(usr) {
+    this.user = usr;
   }
 }
