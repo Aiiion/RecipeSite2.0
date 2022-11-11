@@ -27,13 +27,14 @@ regForm: any = this.formBuilder.group({
   async tryRegister(){
     const {name, email, password} = this.regForm;
     
-      await this.recipe.register(name, email, password).subscribe(response=>{
-                                                     
-         if(response.status == 'success') {
-           window.location.href ="/";
-         } else {
-           alert('invalid credentials, try again');
-         }
+      await this.recipe.register(name, email, password).subscribe(response =>
+      {                                             
+        localStorage.setItem("token", response.authorisation.token)
+        window.location.href ="/";
+        
+      }, err => {
+        console.log(err)
+        alert('invalid credentials, try again');
       })
   }
 

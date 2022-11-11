@@ -16,14 +16,14 @@ export class RecipeFinderComponent {
 
   constructor(private recipe:RecipeService, private data:DataService){
     this.recipe.getRecipeAll().subscribe(response=>{
-      console.log(response.status, response.ok)
-      if(response.status == 403) {
-        alert('You have been logged out');
-        localStorage.setItem("token", response.authorisation.token);
-        window.location.href ="/login";
-      }
+      
       this.recipes=response
       console.log(this.recipes)
+    }, err => {
+      console.log(err)
+      alert('You have been logged out');
+      localStorage.setItem("token", null);
+      window.location.href ="/login";
     })
   }
   getFilteredRecipes(){

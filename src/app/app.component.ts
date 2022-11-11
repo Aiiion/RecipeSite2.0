@@ -16,12 +16,14 @@ export class AppComponent {
     
       await this.recipe.logout().subscribe(response=>{
                                                      
-         if(response.status == 'success') {
           localStorage.token = null;
           window.location.href ="/login";
-         } else {
-           alert('It seems as you are already logged out');
-         }
+         
+      }, err => {
+        alert('It seems as you are already logged out')
+        localStorage.token = null;
+          window.location.href ="/login";
+        console.log(err)
       })
   }
 

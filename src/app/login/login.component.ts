@@ -27,14 +27,12 @@ export class LoginComponent implements OnInit {
     const {email, password} = this.form;
     
       await this.recipe.login(email, password).subscribe(response=>{
-                                                     
-         if(response.status == 'success') {
           
           localStorage.setItem("token", response.authorisation.token)
           window.location.href ="/";
-         } else {
-           alert('invalid credentials, try again');
-         }
+      
+      }, err => {
+        alert('Login failed, try again')
       })
   }
     
