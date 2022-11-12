@@ -1,6 +1,20 @@
-<ul *ngFor="let savedRecipe of savedRecipes">
+<form class="text-white" 
+[formGroup]="form" 
+(ngSubmit)="tryCreate()"
+name="form">
+<h2>create new list:</h2>
+<div class="form-outline mb-4">
+    <label class="form-label" for="name">Name of list</label>
+    <input type="email" formControlName="name" class="form-control" [(ngModel)]="form.name" />
+    
+    <button (click)="tryCreate()" type="button" class="btn btn-primary mb-3">Create list</button>
+  
+  </div>
+</form>
+
+<ul *ngFor="let recipeList of savedRecipes">
     <li class="card col-xl-12 centersetText">
-        <p>{{savedRecipe.title}}</p> 
+        <p>{{recipeList.name}}</p> 
         <div class="col-xl-12">
             <a class="m-3" routerLink="/recipe-details" routerLinkActive="active" (click)="this.data.setChoosenRecipeId(savedRecipe.id)">View Details</a>
             <button class="btn btn-danger" (click)="unSaveRecipe(savedRecipe)">remove</button>

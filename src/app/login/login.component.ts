@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
       await this.recipe.login(email, password).subscribe(response=>{
           
           localStorage.setItem("token", response.authorisation.token)
+          localStorage.setItem("user_id", response.user.id)
           window.location.href ="/";
       
       }, err => {

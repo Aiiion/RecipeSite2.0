@@ -13,6 +13,8 @@ export class RecipeFinderComponent {
   soy: boolean = false;
   peanut: boolean = false;
   mealType: string = "all";
+  savedRecipes:any = this.tryGetSaved();
+  saveTo:number = 0;
 
   constructor(private recipe:RecipeService, private data:DataService){
     this.recipe.getRecipeAll().subscribe(response=>{
@@ -45,4 +47,19 @@ export class RecipeFinderComponent {
     this.mealType = type
     this.getFilteredRecipes()
   }
+  setSaveTo(id) {
+    this.saveTo = id;
+  }
+  async tryGetSaved() {
+    
+    await this.data.getSavedRecipes().subscribe(response=>{
+        
+        this.savedRecipes = response;
+        // window.location.href ="/";
+        console.log(response);
+    
+    }, err => {
+      alert('err, something fishy happened')
+    })
+}
 }

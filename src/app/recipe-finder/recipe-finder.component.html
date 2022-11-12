@@ -1,7 +1,7 @@
 <div class="jumbotron col-xl-12 d-flex">
     
     
-    <div class="col-xl-6 m-1">
+    <div class="col-xl-4 m-1">
       <h2 >Filter alergens</h2>
       <!-- <button class="btn" [ngClass]="{'btn-danger' : gluten, 'btn-success' : !gluten}" (click)="toggleGlutenFree()">Gluten</button>
       <button class="btn" [ngClass]="{'btn-danger' : soy, 'btn-success' : !soy}" (click)="toggleSoyFree()">Soy</button>
@@ -11,7 +11,7 @@
       <button class="btn" [ngClass]="{'btn-danger' : peanut, 'btn-success' : !peanut}" (click)="toggleAlergenFilter('peanut')">Peanuts</button>
     </div>
     
-    <div class="col-xl-6">
+    <div class="col-xl-4">
       <h2>Filter mealtypes</h2>
       <button class="btn"
         [ngClass]="{'btn-primary' : mealType !== 'breakfast', 'btn-dark' : mealType == 'breakfast'}" 
@@ -34,6 +34,15 @@
         >All meals
       </button>
     </div>
+    <div class="col-xl-4">
+      <h2>Saving recipes to list:</h2>
+      <button *ngFor="let recipeList of savedRecipes" class="btn"
+        [ngClass]="{'btn-primary' : saveTo == recipeList.id, 'btn-light' : saveTo != recipeList.id}" 
+        (click)="setSaveTo(recipeList.id)"
+        >
+        {{recipeList.name}}
+      </button>
+    </div>
   </div>
   <table class="col-xl-12 bg-dark m0">
     <thead class="m-3">
@@ -48,7 +57,11 @@
     
     <tr *ngFor="let recipe of recipes.results" class="border-top">
       <td class="text-light">{{ recipe.title }} </td>
-      <td><button class="float-right btn btn-light" (click)="this.data.addSavedRecipe(recipe)">Save</button></td>
+      <td>
+        <button *ngIf="saveTo != 0" class="float-right btn btn-light" (click)="this.data.addSavedRecipe(recipe, saveTo)">
+          Save
+        </button>
+      </td>
       <td class="text-light">
           <a class="m-3" routerLink="/recipe-details" routerLinkActive="active" (click)="this.data.setChoosenRecipeId(recipe.id)">View Details</a>
         </td>

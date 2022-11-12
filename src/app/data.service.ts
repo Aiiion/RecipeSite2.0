@@ -1,15 +1,26 @@
 import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {environment} from './../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   choosenRecipeId: any = 0;
-  savedRecipes: any = [];
-  amountSaved: number = 0;
-  user:any = null;
+  savedRecipes: any = this.getSavedRecipes();
+  userId:any = localStorage.user_id;
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
+
+  getRequestOptions() {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.token}`
+    });
+    const requestOptions = { headers: headers };
+    return requestOptions;
+  }
 
   setChoosenRecipeId(id){
     this.choosenRecipeId = id;
@@ -19,24 +30,26 @@ export class DataService {
   }
   addSavedRecipe(recipe){
     this.savedRecipes.push(recipe);
-    this.amountSaved++;
+    this.http.post(environment.api + 'recipeList/', null, this.getRequestOptions());
+    
     console.log(this.savedRecipes)
   }
-  getSavedRecipes(){
-    return this.savedRecipes;
+  getSavedRecipes() : Observable<any>{
+    return this.http.get(environment.api + 'recipe-lists/index',
+      this.getRequestOptions()
+    );
   }
   removeSavedRecipe(recipe){
     this.savedRecipes = this.savedRecipes.filter(savedRecipe => savedRecipe !== recipe)
     console.log(this.savedRecipes);
-    this.amountSaved--;
+    
   }
-  getAmountSaved(){
-    return this.amountSaved;
+ 
+  createList(name): Observable<any> {
+    return this.http.post(environment.api + 'recipe-lists/create', 
+      name, 
+      this.getRequestOptions()
+    );
   }
-  getUser() {
-    return this.user;
-  }
-  setUser(usr) {
-    this.user = usr;
-  }
+  
 }

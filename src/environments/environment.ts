@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   apiUrlRandom: "http://localhost:80/api/recipes/complexSearch?query=vegetarian&number=10&",
   filteredUrl: "http://localhost:80/api/recipes/complexSearch?",
+  api: "http://localhost:80/api/",
   noGluten: "intolerances=Gluten&",
   noSoy: "intolerances=Soy&",
   noPeanuts: "intolerances=Peanuts&"
