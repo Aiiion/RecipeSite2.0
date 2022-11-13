@@ -46,4 +46,16 @@ export class SavedRecipesComponent implements OnInit {
       alert('err, something fishy happened')
     })
 }
+async tryDelete(id) {
+    
+  await this.data.deleteList(id).subscribe(response=>{
+      
+      this.savedRecipes = response;
+      // window.location.href ="/";
+      console.log(response);
+  
+  }, err => {
+    alert('err, something fishy happened')
+  })
+}
 }

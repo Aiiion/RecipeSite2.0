@@ -47,9 +47,15 @@ export class DataService {
  
   createList(name): Observable<any> {
     return this.http.post(environment.api + 'recipe-lists/create', 
-      name, 
+      {name}, 
       this.getRequestOptions()
     );
+  }
+  deleteList(id): Observable<any> {
+    return this.http.post(environment.api + 'recipe-lists/delete', 
+    {id}, 
+    this.getRequestOptions()
+  );
   }
   
 }

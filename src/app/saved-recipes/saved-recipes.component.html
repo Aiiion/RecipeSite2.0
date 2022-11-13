@@ -14,7 +14,10 @@ name="form">
 
 <ul *ngFor="let recipeList of savedRecipes">
     <li class="card col-xl-12 centersetText">
-        <p>{{recipeList.name}}</p> 
+        <div class="d-flex flex-row justify-content-around">
+            <p>{{recipeList.name}}</p> 
+            <button class="btn btn-danger" (click)="tryDelete(recipeList.id)">Delete list</button>    
+        </div>
         <div class="col-xl-12">
             <a class="m-3" routerLink="/recipe-details" routerLinkActive="active" (click)="this.data.setChoosenRecipeId(savedRecipe.id)">View Details</a>
             <button class="btn btn-danger" (click)="unSaveRecipe(savedRecipe)">remove</button>
