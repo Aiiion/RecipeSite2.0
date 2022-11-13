@@ -37,7 +37,7 @@ export class RecipeFinderComponent {
       }
       this.recipes = response
       console.log(this.recipes)
-  })
+    })
   }
   toggleAlergenFilter(prop){
     this[prop] = !this[prop];
@@ -59,7 +59,26 @@ export class RecipeFinderComponent {
         console.log(response);
     
     }, err => {
-      alert('err, something fishy happened')
+      this.logout();
     })
+  }
+  async tryAddRecipe(recipe, saveTo) {
+    
+    await this.data.addRecipeToList(recipe, saveTo).subscribe(response=>{
+        
+        this.savedRecipes = response;
+        // window.location.href ="/";
+        console.log(response);
+    
+    }, err => {
+      this.logout();
+      alert('Could not save recipe')
+    })
+}
+logout(){
+  alert('You have been logged out');
+      localStorage.setItem("token", null);
+      this.data.token = null;
+      window.location.href ="/login";
 }
 }

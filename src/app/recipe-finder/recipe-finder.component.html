@@ -58,7 +58,7 @@
     <tr *ngFor="let recipe of recipes.results" class="border-top">
       <td class="text-light">{{ recipe.title }} </td>
       <td>
-        <button *ngIf="saveTo != 0" class="float-right btn btn-light" (click)="this.data.addSavedRecipe(recipe, saveTo)">
+        <button *ngIf="saveTo != 0" class="float-right btn btn-light" (click)="this.tryAddRecipe(recipe, this.saveTo)">
           Save
         </button>
       </td>

@@ -19,10 +19,14 @@ export class RecipeDetailsComponent implements OnInit{
         console.log(this.choosenRecipe)
       }, err => {
         console.log(err)
-        alert('You have been logged out');
-        localStorage.setItem("token", null);
-        window.location.href ="/login";
+        this.logout();
       }
     )
   } 
+  logout(){
+    alert('You have been logged out');
+        localStorage.setItem("token", null);
+        this.data.token = null;
+        window.location.href ="/login";
+  }
 }

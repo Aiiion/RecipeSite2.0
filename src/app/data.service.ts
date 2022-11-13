@@ -10,6 +10,7 @@ export class DataService {
   choosenRecipeId: any = 0;
   savedRecipes: any = this.getSavedRecipes();
   userId:any = localStorage.user_id;
+  token: any = localStorage.token;
 
   constructor(private http:HttpClient) { }
 
@@ -28,21 +29,23 @@ export class DataService {
   getChoosenRecipeId(){
     return this.choosenRecipeId;
   }
-  addSavedRecipe(recipe){
-    this.savedRecipes.push(recipe);
-    this.http.post(environment.api + 'recipeList/', null, this.getRequestOptions());
+  addRecipeToList(recipe, saveTo): Observable<any>{
     
-    console.log(this.savedRecipes)
+    return this.http.post(environment.api + 'recipe-lists/update',
+      [recipe, saveTo],
+      this.getRequestOptions()
+    );
   }
   getSavedRecipes() : Observable<any>{
     return this.http.get(environment.api + 'recipe-lists/index',
       this.getRequestOptions()
     );
   }
-  removeSavedRecipe(recipe){
-    this.savedRecipes = this.savedRecipes.filter(savedRecipe => savedRecipe !== recipe)
-    console.log(this.savedRecipes);
-    
+  removeSavedRecipe(recipe, list_id): Observable<any>{
+    return this.http.post(environment.api + 'recipe-lists/remove', 
+      {recipe,list_id}, 
+      this.getRequestOptions()
+    );
   }
  
   createList(name): Observable<any> {

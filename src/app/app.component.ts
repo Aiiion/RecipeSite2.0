@@ -26,5 +26,8 @@ export class AppComponent {
         console.log(err)
       })
   }
+  getToken(){
+    return localStorage.token;
+  }
 
 }

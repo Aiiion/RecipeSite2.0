@@ -3,7 +3,7 @@
 <h1 class="col-xl-12 text-light">spagetti.code</h1>
 <nav class="flex-row  justify-content-around nav col-sm-12 pb-2">
   
-  <a *ngIf="token" class="nav-link text-light" routerLink="/" routerLinkActive="active">Recipe Finder</a>
+  <a *ngIf="getToken()" class="nav-link text-light" routerLink="/" routerLinkActive="active">Recipe Finder</a>
   
   <a *ngIf="token" class="nav-link text-light" routerLink="/saved-recipes" routerLinkActive="active">Saved recipes</a>
 

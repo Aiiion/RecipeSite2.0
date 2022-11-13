@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService} from '../data.service';
 import { FormBuilder} from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-saved-recipes',
@@ -10,6 +11,7 @@ import { FormBuilder} from '@angular/forms';
 export class SavedRecipesComponent implements OnInit {
 
   savedRecipes :any =[];
+  parsedRecipes:any= [];
   form: any = this.formBuilder.group({
     name: ''
   });
@@ -18,20 +20,26 @@ export class SavedRecipesComponent implements OnInit {
   ngOnInit(): void {
     this.savedRecipes = this.tryGetSaved();
   }
-  unSaveRecipe(recipe){
-    this.savedRecipes = this.savedRecipes.filter(savedRecipe => savedRecipe !== recipe)
-    this.data.removeSavedRecipe(recipe)
+  async unSaveRecipe(recipe, list_id){
+
+    await this.data.removeSavedRecipe(recipe, list_id).subscribe(response=>{
+          
+      this.savedRecipes = response;
+      console.log(response);
+  
+  }, err => {
+    this.logoutUser();
+  })
   }
   async tryCreate() {
     
       await this.data.createList(this.form.name).subscribe(response=>{
           
           this.savedRecipes = response;
-          // window.location.href ="/";
           console.log(response);
       
       }, err => {
-        alert('err, something fishy happened')
+        this.logoutUser();
       })
   }
   async tryGetSaved() {
@@ -39,11 +47,10 @@ export class SavedRecipesComponent implements OnInit {
     await this.data.getSavedRecipes().subscribe(response=>{
         
         this.savedRecipes = response;
-        // window.location.href ="/";
         console.log(response);
     
     }, err => {
-      alert('err, something fishy happened')
+      this.logoutUser();
     })
 }
 async tryDelete(id) {
@@ -51,11 +58,17 @@ async tryDelete(id) {
   await this.data.deleteList(id).subscribe(response=>{
       
       this.savedRecipes = response;
-      // window.location.href ="/";
       console.log(response);
   
   }, err => {
-    alert('err, something fishy happened')
+    this.logoutUser();
   })
+}
+
+logoutUser() {
+  alert('You have been logged out');
+      localStorage.setItem("token", null);
+      window.location.href ="/login";
+      this.data.token = null;
 }
 }
